@@ -115,8 +115,6 @@ handle_info({timeout, R, ?TIMER_MSG}, S = #state{sink=Sink, key=K, key_separator
 
     Sink:collect(gauge, [K, "schedulers_online"], erlang:system_info(schedulers_online)),
 
-    Sink:collect(gauge, [K, "thread_pool_size"], erlang:system_info(thread_pool_size)),
-
     {CtxSwitches, RunTime} = erlang:statistics(context_switches),
     Sink:collect(gauge, [K, "context_switches"], CtxSwitches),
     Sink:collect(gauge, [K, "runtime"], RunTime),
